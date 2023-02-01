@@ -675,6 +675,7 @@ class Detector:
         load_from_torch=False,
         optimizer="adam",
         backbone_name="vgg",
+        learning_rate=0.01
     ):
         if weights is not None:
             pretrained_key = (weights, load_from_torch)
@@ -693,7 +694,7 @@ class Detector:
         self.model = build_keras_model(
             weights_path=weights_path, backbone_name=backbone_name
         )
-        self.model.compile(loss="mse", optimizer=optimizer)
+        self.model.compile(loss="mse", optimizer=optimizer, learning_rate=learning_rate)
 
     def get_batch_generator(
         self,
