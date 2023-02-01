@@ -417,6 +417,7 @@ def get_detector_image_generator(
         image, scale = tools.fit(
             image, width=width, height=height, mode="letterbox", return_scale=True
         )
+        image = image/255.  # added
         lines = tools.adjust_boxes(boxes=lines, boxes_format="lines", scale=scale)
         yield image, lines, confidence
 
