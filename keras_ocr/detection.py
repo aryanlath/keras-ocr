@@ -694,7 +694,7 @@ class Detector:
         self.model = build_keras_model(
             weights_path=weights_path, backbone_name=backbone_name
         )
-        self.model.compile(loss="mse", optimizer=optimizer, learning_rate=learning_rate)
+        self.model.compile(loss="mse", optimizer=optimizer, lr=learning_rate)
 
     def get_batch_generator(
         self,
