@@ -418,9 +418,9 @@ def get_detector_image_generator(
         image, scale = tools.fit(
             image, width=width, height=height, mode="letterbox", return_scale=True
         )
-        image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-        image = cv2.adaptiveThreshold(image,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
-            cv2.THRESH_BINARY,7,2)
+#         image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+#         image = cv2.adaptiveThreshold(image,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
+#             cv2.THRESH_BINARY,7,2)
         image = image/255.  # added
         lines = tools.adjust_boxes(boxes=lines, boxes_format="lines", scale=scale)
         yield image, lines, confidence
