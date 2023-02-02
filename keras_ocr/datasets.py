@@ -13,6 +13,7 @@ import tqdm
 import imgaug
 import PIL.Image
 import numpy as np
+import cv2
 
 from . import tools
 
