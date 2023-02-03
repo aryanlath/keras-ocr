@@ -212,6 +212,8 @@ def getBoxes(
     size_threshold=10,
 ):
     box_groups = []
+    print(y_pred.shape)
+    print(y_pred)
     for y_pred_cur in y_pred:
         # Prepare data
         textmap = y_pred_cur[..., 0].copy()
