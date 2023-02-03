@@ -212,8 +212,8 @@ def getBoxes(
     size_threshold=10,
 ):
     box_groups = []
-    print(y_pred.shape)
-    print(y_pred)
+#     print(y_pred.shape)
+#     print(y_pred)
     for y_pred_cur in y_pred:
         # Prepare data
         textmap = y_pred_cur[..., 0].copy()
@@ -286,7 +286,7 @@ def getBoxes(
                 box = np.array(np.roll(box, 4 - box.sum(axis=1).argmin(), 0))
             boxes.append(2 * box)
         box_groups.append(np.array(boxes))
-    return box_groups
+    return box_groups, textmap, linkmap, segmap
 
 
 class UpsampleLike(keras.layers.Layer):
@@ -778,11 +778,11 @@ class Detector:
             size_threshold: The minimum area for a word.
         """
         images = [compute_input(tools.read(image)) for image in images]
-        boxes = getBoxes(
+        boxes, textmap, linkmap, segmap = getBoxes(
             self.model.predict(np.array(images), **kwargs),
             detection_threshold=detection_threshold,
             text_threshold=text_threshold,
             link_threshold=link_threshold,
             size_threshold=size_threshold,
         )
-        return boxes
+        return boxes, textmap, linkmap, segmap
